@@ -11,6 +11,10 @@
     "dev:api": "pnpm --filter api start:dev",
     "dev:web": "pnpm --filter web dev",
     "infra:up": "docker compose up -d --wait",
-    "infra:down": "docker compose down"
+    "infra:down": "docker compose down",
+    "lint": "pnpm -r run lint",
+    "test": "pnpm -r --if-present run test",
+    "test:e2e": "pnpm -r --if-present run test:e2e",
+    "build": "pnpm -r run build"
   }
 }
