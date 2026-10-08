@@ -8,6 +8,7 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev:api": "pnpm --filter api start:dev"
+    "dev:api": "pnpm --filter api start:dev",
+    "dev:web": "pnpm --filter web dev"
   }
 }
