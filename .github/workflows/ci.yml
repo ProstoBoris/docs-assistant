@@ -15,6 +15,9 @@ jobs:
     name: Lint, test, and build
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    env:
+      # Placeholder values so the API's config validation passes in CI.
+      DATABASE_URL: postgres://docs:docs@localhost:5432/docs_assistant
     steps:
       - uses: actions/checkout@v7
 
