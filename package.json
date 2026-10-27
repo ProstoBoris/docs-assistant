@@ -12,6 +12,7 @@
     "dev:web": "pnpm --filter web dev",
     "infra:up": "docker compose up -d --wait",
     "infra:down": "docker compose down",
+    "db:migrate": "pnpm --filter api migration:run",
     "lint": "pnpm -r run lint",
     "test": "pnpm -r --if-present run test",
     "test:e2e": "pnpm -r --if-present run test:e2e",

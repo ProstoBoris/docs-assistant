@@ -16,8 +16,22 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      # Placeholder values so the API's config validation passes in CI.
+      # Points at the Postgres service below.
       DATABASE_URL: postgres://docs:docs@localhost:5432/docs_assistant
+    services:
+      postgres:
+        image: pgvector/pgvector:pg17
+        env:
+          POSTGRES_USER: docs
+          POSTGRES_PASSWORD: docs
+          POSTGRES_DB: docs_assistant
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U docs -d docs_assistant"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     steps:
       - uses: actions/checkout@v7
 
@@ -32,5 +46,6 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm test
-      - run: pnpm test:e2e
       - run: pnpm build
+      - run: pnpm db:migrate
+      - run: pnpm test:e2e
