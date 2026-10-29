@@ -8,7 +8,8 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev:api": "pnpm --filter api start:dev",
+    "dev": "pnpm --parallel -r run dev",
+    "dev:api": "pnpm --filter api dev",
     "dev:web": "pnpm --filter web dev",
     "infra:up": "docker compose up -d --wait",
     "infra:down": "docker compose down",
