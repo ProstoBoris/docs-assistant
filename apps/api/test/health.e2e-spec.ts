@@ -32,4 +32,16 @@ describe('Health (e2e)', () => {
       info: { database: { status: 'up' } },
     });
   });
+
+  it('answers unknown routes with the standard error shape', async () => {
+    const response = await request(app.getHttpServer())
+      .get('/api/does-not-exist')
+      .expect(404);
+
+    expect(response.body).toMatchObject({
+      statusCode: 404,
+      error: 'Not Found',
+      path: '/api/does-not-exist',
+    });
+  });
 });
